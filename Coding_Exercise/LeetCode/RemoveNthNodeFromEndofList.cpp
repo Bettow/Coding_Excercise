@@ -1,3 +1,5 @@
+
+	//use the basic case to think ... {1}, 1
 	ListNode *removeNthFromEnd(ListNode *head, int n) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
