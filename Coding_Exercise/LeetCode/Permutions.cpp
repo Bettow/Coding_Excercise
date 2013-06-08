@@ -5,7 +5,7 @@
 			// Start typing your C/C++ solution below
 			// DO NOT write int main() function
 			res.clear();
-			vector<bool> used= {false};
+			vector<bool> used(num.size(), false);
 			vector<int> rs;
 			dfs(0,num.size(), used, num, rs);
 			return res;
