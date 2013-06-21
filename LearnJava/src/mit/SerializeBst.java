@@ -3,17 +3,18 @@ package mit;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import structure.BstTreeNode;
 import structure.TreeNode;
 
 public class SerializeBst {
-	public TreeNode deserializeTree(ArrayList<String> s) {
+	public BstTreeNode deserializeTree(ArrayList<String> s) {
 		if (s.size() == 0 ) return null;
 		String c = s.get(0);
 		if (c == "#") 
 			return null;
 		
 		int val = Integer.parseInt(c);
-		TreeNode root = new TreeNode(val);
+		BstTreeNode root = new BstTreeNode(val);
 		s.remove(0);
 		if (!s.isEmpty())
 			root.left = deserializeTree(s);
@@ -25,7 +26,7 @@ public class SerializeBst {
 		return root;		
 	}
 	
-	public ArrayList<String> serializeTree(TreeNode root) {
+	public ArrayList<String> serializeTree(BstTreeNode root) {
 		ArrayList<String> ret = new ArrayList<String>();
 		if (root == null) {
 			ret.add("#");
@@ -44,7 +45,7 @@ public class SerializeBst {
 		String [] as = {"2", "1", "#", "#", "3", "#", "#"};
 		ArrayList<String> arrayString  = new ArrayList<String>(Arrays.asList(as));
 		SerializeBst ds = new SerializeBst(); 
-		TreeNode root = ds.deserializeTree(arrayString);
+		BstTreeNode root = ds.deserializeTree(arrayString);
 		//root = null;
 		arrayString = ds.serializeTree(root);
 		

@@ -1,10 +1,5 @@
 package structure;
 
-public class TreeNode {
+public abstract class TreeNode {
 	public int val;
-	public TreeNode left;
-	public TreeNode right;
-	public TreeNode(int x) {
-		this.val = x;
-	}
 }
