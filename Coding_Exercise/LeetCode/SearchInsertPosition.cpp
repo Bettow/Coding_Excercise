@@ -1,22 +1,24 @@
-	int searchInsert(int A[], int n, int target) {
-		// Start typing your C/C++ solution below
-		// DO NOT write int main() function
-		int st = 0;
-		int ed = n-1;
-		if (target <= A[0])
-			return 0;
-		if (target > A[n-1])
-			return n;
-
-		while (st < ed) {
-			int mid = st+(ed-st)/2;
-			if (A[mid] == target) {
-				return mid;
-			} else if (A[mid] > target) {
-				ed = mid-1; 
-			} else {
-				st = mid+1;
-			}
-		}
-		return A[st] >= target? st: st+1;  //BUG
+int searchInsert(int A[], int n, int target) {
+	// Start typing your C/C++ solution below
+	// DO NOT write int main() function
+	if (n==0) return 0;
+	if (target < A[0]) {
+		return 0;
+	} else if (target > A[n-1]) {
+		return n;
 	}
+
+	int l = 0;
+	int r = n-1;
+	while (l <=r ) {
+		int m = (l+r)/2;
+		if (A[m] == target) {
+			return m;
+		} else if (A[m] > target) {
+			r = m-1;
+		} else {
+			l = m+1;
+		}
+	}
+	return l;
+}
