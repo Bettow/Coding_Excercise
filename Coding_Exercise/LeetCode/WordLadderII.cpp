@@ -42,7 +42,7 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
 					next_q.push(new_word);
 					us.insert(new_word);
 					mp_str_v[new_word].push_back(word);
-				} else if (us.find(new_word) != us.end()){  //remember this condition
+				} else if (us.find(new_word) != us.end()){  //New word has more than one father. Remember this condition 
 					mp_str_v[new_word].push_back(word);
 				}
 			}
