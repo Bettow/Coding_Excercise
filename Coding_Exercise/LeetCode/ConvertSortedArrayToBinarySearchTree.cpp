@@ -14,21 +14,47 @@
 		return node;
     }
 
-	TreeNode *sortedListToBST(ListNode *head) {
-		// Start typing your C/C++ solution below
-		// DO NOT write int main() function
-		int size=0;
-		ListNode *p = head;
-		while (p) size++;
-		return helper(head, 0, size-1);
-	}
 
-	TreeNode *helper(ListNode *head, int begin, int end) {
-		if (begin > end) return NULL;
-		int mid = begin + (end-begin)/2;
-		TreeNode *left = helper(head, begin, mid-1);
-		TreeNode *node = new TreeNode(head->val);
-		head = head->next;
-		TreeNode *right = helper(head, mid+1, end);
-		return node;
-	}
+//Iterative
+    TreeNode *sortedArrayToBST(vector<int> &num) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int m = num.size();
+        if (m==0)
+            return NULL;
+        TreeNode *root = BuildBst(m);
+        TreeNode *curr= root;
+        stack<TreeNode*> st;
+        bool done = false;
+        int i = 0;
+        while(!done) {
+            if (curr) {
+                st.push(curr);
+                curr = curr->left;
+            } else {        
+                if (st.empty()) {
+                    done = true;
+                } else {
+                    curr = st.top();
+                    st.pop();
+                    curr->val = num[i++];
+                    curr = curr->right;                
+                }
+            }
+        }
+        return root;
+    }
+    
+    TreeNode *BuildBst(int n) {
+        vector<TreeNode*> vt;
+        for (int i =0; i < n; ++i)
+            vt.push_back(new TreeNode(0));
+            
+        for (int i =0; i < n; ++i) {
+            if (i*2+1 < n)
+                vt[i]->left = vt[i*2+1];
+            if (i*2+2 < n)
+                vt[i]->right = vt[i*2+2];
+        }
+        return vt[0];
+    }

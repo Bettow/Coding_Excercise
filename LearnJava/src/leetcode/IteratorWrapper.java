@@ -1,4 +1,4 @@
-package mit;
+package leetcode;
 
 import java.util.Iterator;
 

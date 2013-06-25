@@ -1,4 +1,4 @@
-package mit;
+package leetcode;
 
 public class editDistanceRec {
     public int minDistance(String a, String b) {

@@ -1,4 +1,6 @@
-package mit;
+package leetcode;
+
+import structure.TrieNode;
 
 public class LongestRepSubString {
 	public int insertNode(TrieNode root, String s) {

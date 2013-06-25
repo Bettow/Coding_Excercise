@@ -1,4 +1,4 @@
-package mit;
+package structure;
 
 import java.util.HashSet;
 

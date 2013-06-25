@@ -1,4 +1,4 @@
-package mit;
+package leetcode;
 
 import java.util.HashMap;
 import java.util.LinkedList;
