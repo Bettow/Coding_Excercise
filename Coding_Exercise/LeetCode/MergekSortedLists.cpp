@@ -7,7 +7,6 @@
 		for (int i =0; i < lists.size(); ++i) {
 			if (lists[i]) {  //test NULL of list
 				hp.push_back(lists[i]);
-				lists[i] = lists[i]->next;
 			}
 		}
 
