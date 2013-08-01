@@ -16,10 +16,7 @@
 				result.push_back(output);
 				return;
 			}
-			if (r>l) return;
-			if (l < n) {
-				//cant' use output = output +')'  it will be reused/rollback
-				
+			if (l < n) {				
 				dfs(l+1, r, n, output + '(');
 			}
 			if (r < l) {
