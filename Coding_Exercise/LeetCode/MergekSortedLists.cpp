@@ -33,6 +33,6 @@
 	class comp {
 	public:
 		bool operator()(ListNode *l1, ListNode* l2) const {
-			return l1->val > l2->val;
+			return l1->val > l2->val;  //Why >
 		}
 	};
