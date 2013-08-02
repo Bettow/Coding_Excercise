@@ -8,7 +8,7 @@
 
 		stack<int> cstack;
 		int length_sofar = 0;
-		int left = 0;
+		int left = -1;
 		for (int i =0; i < s.size(); ++i) {
 			if (s[i] == '(')
 				cstack.push(i) ;
@@ -16,12 +16,12 @@
 				if (!cstack.empty()) {
 					cstack.pop();
 					if (cstack.empty())
-						length_sofar = i- left+1;
+						length_sofar = i- left;
 					else 
 						length_sofar = i-cstack.top();
 					ret = max(ret, length_sofar);
 				} else {
-					left = i +1; //reset when stack is empty(important)
+					left = i; //reset when stack is empty(important)
 				}      
 
 			}
