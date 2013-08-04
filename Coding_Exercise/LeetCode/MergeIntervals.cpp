@@ -1,32 +1,30 @@
-	struct comp {
-		bool operator()(const Interval &l, const Interval &r) {
-			return l.start < r.start;
+class comp {
+public:
+	bool operator()(Interval l, Interval r) {
+		return l.start < r.start;
+	} 
+};
+
+vector<Interval> merge(vector<Interval> &intervals) {
+	// Start typing your C/C++ solution below
+	// DO NOT write int main() function
+	vector<Interval> ret;
+	sort(intervals.begin(), intervals.end(), comp());
+	for (int i =0; i < intervals.size(); ++i) {
+		if (ret.empty()) {
+			ret.push_back(intervals[i]);
+			continue;
 		}
-	};
-	bool mergeInterval(const Interval &l, const Interval &r, Interval &out) {
-		if (l.end < r.start)
-			return false;
-		out.start = l.start;
-		out.end = max(l.end, r.end); //BUG1
-		return true;    
-
-	}
-	vector<Interval> merge(vector<Interval> &intervals) {
-		// Start typing your C/C++ solution below
-		// DO NOT write int main() function
-		vector<Interval> ret;
-		if (intervals.empty())
-			return ret;
-
-		sort(intervals.begin(), intervals.end(), comp());  //comp()
-		ret.push_back(intervals[0]);
-		for (int i=1; i< intervals.size(); ++i) {
-			Interval out;
-			if (mergeInterval(ret.back(), intervals[i], out))
-				ret.back() = out;
-			else
-				ret.push_back(intervals[i]);
-
+		Interval last = ret.back();
+		if (intervals[i].start > last.end) {
+			ret.push_back(intervals[i]);
+		} else {
+			int b = last.start;
+			int e = max(last.end, intervals[i].end);
+			Interval n(b, e);
+			ret.pop_back();
+			ret.push_back(n);
 		}
-		return ret;
 	}
+	return ret;
+}
