@@ -17,7 +17,7 @@
         int count = 0;
         while (si.find(e) != si.end()) {
             count++;
-            si.erase(si.find(e));
+            si.erase(si.find(e));  //key 
             if (dir) 
                 e++;
             else
