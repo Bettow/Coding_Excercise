@@ -1,22 +1,19 @@
     int sqrt(int x) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        if (x <=1) return 1;//bug
-        int l = 0;
-        int r = x;
-        while ((r-l) >1) {
-            int mid = l + (r-l)/2;
-            int d = x/mid;
-            if (d == mid)
-                return d;
-            else if (d > mid) {
-                l = mid;
+        long long int l = 0;
+        long long int r = x;
+        long long int xx = x;
+        while (l <=r) {
+            long long int m = (l+r)/2;
+            if (m*m <= xx && (m+1)*(m+1) > xx) {
+                return m;
+            } else if (m*m > xx) {
+                r = m-1;
             } else {
-                r = mid;
+                l = m+1;
             }
         }
-        return l;
-        
     }
 
 	double sqrt(int x) {
