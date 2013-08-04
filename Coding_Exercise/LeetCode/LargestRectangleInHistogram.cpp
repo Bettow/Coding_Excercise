@@ -4,42 +4,26 @@
 		bar(int h, int l): height(h), loc(l){}
 	};
 
-	//optimize later to remove duplicated code
-	int largestRectangleArea(vector<int> &height) {
-		// Start typing your C/C++ solution below
-		// DO NOT write int main() function
-		if (height.empty())
-			return 0;
-
-		stack<bar> sb;
-		int marea =0;
-		for(int i = 0; i < height.size(); ++i) {
-			if (sb.empty()) {
-				sb.push(bar(height[i],i+1));
-			} else {
-				if (sb.top().height < height[i]) {
-					sb.push(bar(height[i],i+1));
-				} else {
-					while (!sb.empty() && sb.top().height > height[i]) {
-						bar b = sb.top();
-						sb.pop();
-						int last_loc = sb.empty()? 0: sb.top().loc;
-						int dist = i - last_loc; //note here
-						int area = dist * b.height;
-						marea = max(marea, area);                    
-					}    
-					sb.push(bar(height[i],i+1));
-				}
-
-			}
-		}
-		while (!sb.empty()) {
-			bar b = sb.top();
-			sb.pop();
-			int last_loc = sb.empty()? 0: sb.top().loc;
-			int dist = height.size() - last_loc;
-			int area = dist * b.height;
-			marea = max(marea, area);
-		}
-		return marea;
-	}
+    int largestRectangleArea(vector<int> &height) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if (height.empty())
+            return 0;
+        stack<bar> sb;
+        int max_area = 0;
+        int n = height.size();
+        height.push_back(0);
+        for (int i =0; i <=n; ++i) {
+            if (!sb.empty() && sb.top().height > height[i]) {  //> or >== are the same
+                while (!sb.empty() && sb.top().height > height[i]) {
+                    bar b = sb.top();
+                    sb.pop();
+                    int l = sb.empty()? -1: sb.top().loc;
+                    int area = (i - l-1) * b.height; //i-l-1  //l is after pop need to -1
+                    max_area = max(max_area, area);
+                }                    
+            }
+            sb.push(bar(height[i], i));  //need to push in all cases
+        }
+        return max_area;
+    }
