@@ -20,5 +20,5 @@ int searchInsert(int A[], int n, int target) {
 			l = m+1;
 		}
 	}
-	return l;
+	return l;  //Note
 }
