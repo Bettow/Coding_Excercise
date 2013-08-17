@@ -30,7 +30,7 @@ int atoi(const char *str) {
 		//because INT_MAX < abs(INT_MIN) ...48
 		//when the input is -2147483648 the 2147483648 is an overflow of max int, 
 		//will return the min int -2...8
-                if (INT_MAX- d >= result) {
+                if (INT_MAX- d >= result) {  //must use >= not <=
                     result = result+d;
                 } else {
                     return isNeg? INT_MIN: INT_MAX;
