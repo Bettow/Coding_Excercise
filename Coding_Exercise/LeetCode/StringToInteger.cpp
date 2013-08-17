@@ -21,7 +21,7 @@ int atoi(const char *str) {
         while(*str != '\0') {
             if (*str >='0' && *str <='9') {
                 int d = *str-'0';
-                if (INT_MAX/10 >= result) {
+                if (INT_MAX/10 >= result) {  //This is for "-2147483647"	-2147483648	-2147483647?
                     result = result*10;
                 } else {
                     return isNeg? INT_MIN: INT_MAX;
