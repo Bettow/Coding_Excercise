@@ -1,24 +1,16 @@
     int sumNumbers(TreeNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        int sum = 0, curr= 0;
-        helper(root, sum, curr);
-        return sum;
-        
+        return sumHelper(root, 0);
     }
     
-    void helper(TreeNode *root, int &sum, int curr) {
-        if (!root)
-            return;
+    int sumHelper(TreeNode *root, int curr) {
+        if (!root) return 0;
+        if (!root->left && !root->right)
+            return curr*10+root->val;
         
-        curr = curr*10+root->val;
-        if (!root->left && !root->right) {
-            sum += curr;
-            return;
-        }
-        
-        
-        helper(root->left, sum, curr);
-        helper(root->right, sum, curr);
-        
+        curr = curr*10+ root->val;
+        int l = sumHelper(root->left, curr);
+        int r = sumHelper(root->right, curr);
+        return l+r;
     }
