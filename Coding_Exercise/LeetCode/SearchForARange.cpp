@@ -1,33 +1,39 @@
-vector<int> searchRange(int A[], int n, int target) {
-	vector<int> ret(2, -1);
-	if (n==0)
-		return ret;
-
-	int l = 0;
-	int r = n;
-	//should not use l<=r as a condition
-	//1) A[l] would overflow as l=l+1;
-	//2) when calculating mid = r+l/2 and r = mid, r is -- everytime until l = r-1; 
-	while (l<r) {
-		int mid = (l+r)/2;
-		if (A[mid] < target) 
-			l = mid+1;
-		else
-			r = mid;
-	}
-	if (A[l] != target)
-		return ret;
-	else
-		ret[0] = l;
-
-	r = n;
-	while (l<r) {
-		int mid = (l+r)/2;
-		if (A[mid] > target)
-			r = mid;
-		else
-			l = mid+1;
-	}
-	ret[1] = r-1;
-	return ret;
-}
+    vector<int> searchRange(int A[], int n, int target) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int s = -1;
+        int l = 0;
+        int r = n-1;
+        while (l <=r) {
+            int mid = (r+l)/2;
+            if (A[mid] < target) {
+                l = mid+1;
+            } else if (A[mid] > target) {
+                r = mid-1;
+            } else {
+                r = mid-1;
+                s = mid;
+            }
+        }
+        vector<int> res(2, -1);
+        if (s == -1) {
+            return res;
+        }
+        res[0] = s;
+        l =0;
+        r = n-1;
+        s = -1;
+        while (l <=r) {
+            int mid = (r+l)/2;
+            if (A[mid] < target) {
+                l = mid+1;
+            } else if (A[mid] > target) {
+                r = mid-1;
+            } else {
+                l = mid+1;
+                s = mid;
+            }
+        }
+        res[1] = s;
+        return res;
+    }
