@@ -31,3 +31,27 @@ bool isMatch(const char *s, const char *p) {
 	}
 	return true;
 }
+
+
+//recursion
+    bool isMatch(const char *s, const char *p) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if (*p == '*') {
+            while (*p == '*') p++;
+            if (*p == '\0') {
+                return true;
+            } else {
+                while (*s && !isMatch(s, p)) {
+                    s++;
+                }
+                return *s; // above loop end because of s is end;
+            }
+        } else if (*p == '\0' || *s == '\0') {
+            return *p == *s;
+        } else if (*p == *s || *p == '?') {
+            return isMatch(s+1, p+1);
+        } else {
+            return false;
+        }
+    }
