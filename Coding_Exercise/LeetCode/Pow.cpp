@@ -13,10 +13,10 @@
 		double hp = pow(x, n/2);
 
 		double result;
-		if (n%2 ==0) {
-			result = hp*hp;
-		} else {
+		if (n & 1) {
 			result = hp*hp*x;
+		} else {
+			result = hp*hp;
 		}
 
 		return isNeg ==false? result: 1/result;
