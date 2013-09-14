@@ -1,57 +1,36 @@
+    bool validOne(char c) {
+        return '0' < c && c <= '9';
+    }
+    bool validTwo(char c1, char c2) {
+        if (c1 == '1' && '0' <= c2 && c2 <= '9')
+            return true;
+        if (c1 == '2' && '0' <= c2 && c2 <= '6')
+            return true;
+        return false;
+    }
     int numDecodings(string s) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         if (s.empty())
             return 0;
-            
         int n = s.size();
-        vector<int> tb(n+1,1);
-        if (s[0] == '0')
-            return 0;
-        for (int i = 1; i <= n; i++) {
-            if (s[i-1] == '0') {
-                if ( !(s[i-2] == '1' || s[i-2]=='2')) { 
-                    return 0;
-                } else {
-                    tb[i]= tb[i-2];
-                }
-            } else if (i >= 2 && (('0' < s[i-1] && s[i-1] <='6' && s[i-2]=='2') ||
-                 (s[i-2] == '1'))) {
-                    tb[i] = tb[i-1] + tb[i-2];
-            } else {
-                    tb[i] = tb[i-1];
-            }  
-            
+        if (n == 1)
+            return validOne(s[0]);
+        if (n ==2) {
+            int k1 = validOne(s[0]) && validOne(s[1]);
+            int k2 = validTwo(s[0], s[1]);
+            return k1+ k2;
         }
-        return tb[n];
-        
+        int k1 = validOne(s[0]) && validOne(s[1]);
+        int k2 = validTwo(s[0], s[1]);
+        int s2 = validOne(s[0]);
+        int s1 = k1+k2;
+        int sum = 0;
+        for (int i = 2; i < n; ++i) {
+            sum = s1* validOne(s[i]) + s2*validTwo(s[i-1],s[i]);
+            s2 = s1;
+            s1 = sum;
+        }
+        return sum;
     }
-
-
-
-//2
-	int numDecodings(string s) {
-		// Start typing your C/C++ solution below
-		// DO NOT write int main() function
-		if (s.empty())
-			return 0;
-		vector<int> iv(s.size()+1,0);
-
-		if (s[0] =='0') {  //BUG
-			iv[0] =0;
-		} else {
-			iv[0]=1;
-		}
-
-		for (int i =1; i<= s.size(); i++) {
-			int c1=0;
-			if (s[i-1] != '0')  //there could be no way to decode the string
-				c1= iv[i-1];
-			int c2=0;
-			if (i>=2 && (s[i-2] == '1' ||(s[i-2]=='2' && s[i-1] <='6')))
-				c2 = iv[i-2];
-			iv[i] = c1+c2;
-		}
-		return iv[s.size()];
-	}
 	
