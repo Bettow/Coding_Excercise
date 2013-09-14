@@ -2,27 +2,22 @@
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         ListNode *dummy = new ListNode(0);
-        ListNode *pre = dummy;
         dummy->next = head;
-        while(head) {
-            if (!head->next) 
-                break;
-            if (head->val == head->next->val) {
-                ListNode *p = head->next;
-                while (p && p->val == head->val)
-                    p = p->next;
-                if (p) {
-                    pre->next = p;
-                    head = p;
+        ListNode *curr = dummy;
+        while (curr) {
+            if (curr->next && curr->next->next) {
+                if (curr->next->val == curr->next->next->val) {
+                    ListNode *p = curr->next->next;
+                    while (p && curr->next->val == p->val) {
+                        p = p->next;    
+                    }
+                    curr->next = p;
                 } else {
-                    pre->next = NULL;
-                    head = NULL;  //dont' forget head
+                    curr = curr->next;
                 }
             } else {
-                pre = head;
-                head = head->next;
+                break;
             }
-            
         }
         return dummy->next;
     }
