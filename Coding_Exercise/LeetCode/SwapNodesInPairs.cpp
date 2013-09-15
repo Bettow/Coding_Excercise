@@ -12,10 +12,7 @@
 	ListNode *swapPairs(ListNode *head) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        if (!head)
-            return NULL;
-        if (!head->next)
-            return head;
+        if (!head || !head->next) return head;
         ListNode *dummy = new ListNode(0);
         dummy->next = head;
         ListNode *curr = dummy;
