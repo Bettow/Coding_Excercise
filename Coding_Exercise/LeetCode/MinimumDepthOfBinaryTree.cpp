@@ -1,23 +1,17 @@
-    int getDepth(TreeNode *root, int lv) {
-        if (!root) 
-            return lv-1;
-        
-        int l = getDepth(root->left, lv+1);
-        int r = getDepth(root->right, lv+1);
-        
-        if (l == lv && r == lv)
-            return lv;
-        else if (l == lv)
-            return r;
-        else if (r == lv)
-            return l;
-        else 
-            return min(r, l);
-        
-        
-    }
     int minDepth(TreeNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        return getDepth(root, 1);
+        if (!root) return 0;
+        if (!root->left && !root->right) {
+            return 1;
+        }
+        if (root->left && root->right) {
+            return min(minDepth(root->left), minDepth(root->right))+1;
+        }
+        if (root->left) {
+            return minDepth(root->left)+1;
+        } else {
+            return minDepth(root->right)+1;
+        }
+        
     }
