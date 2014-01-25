@@ -8,7 +8,7 @@
         vector<int> r(2);
         for (int i = 0; i < numbers.size(); ++i) {
             int s = target - numbers[i];
-            if (im.count(s)) {
+            if (im.count(s) && i != mp[s]) {
                 r[0] = i+1;
                 r[1] = im[s]+1;
                 return r;
