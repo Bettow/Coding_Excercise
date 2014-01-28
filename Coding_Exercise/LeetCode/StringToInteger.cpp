@@ -42,3 +42,40 @@ int atoi(const char *str) {
         }
         return isNeg? -result:result;
  }
+ 
+ //new version
+
+	int atoi(const char *str) {
+		if (str == NULL)
+			return 0;
+		while (*str == ' ')
+			str++;
+		bool is_negative = false;
+		if (*str == '+') {
+			str++;
+		}
+		else if (*str == '-') {
+			is_negative = true;
+			str++;
+		}
+
+		long long ret = 0;
+		while (*str) {
+			char c = *str;
+			if (!isdigit(c))
+				break;
+			int n = c - '0';
+			ret = ret * 10 + n;
+			if (!is_negative) {
+			    if (ret >= INT_MAX) {
+			        return INT_MAX;
+			    }
+			} else {
+			    if (-ret <= INT_MIN) {
+			        return INT_MIN;
+			    }
+			}
+			str++;
+		}
+		return is_negative? -ret: ret;
+	}
