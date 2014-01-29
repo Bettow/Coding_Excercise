@@ -17,11 +17,11 @@
 			carry = carry/10;
 			curr = curr->next;          
 		}
-		if (carry ==1) {  
-			curr->next = new ListNode(1);
-		} else {
-			curr->next = NULL;
-		}
+		if (carry == 1) {  //Dont forget this
+            		curr->next = new ListNode(1);
+            		curr = curr->next;
+        	} 
+        	curr->next = NULL;
 		return head->next;
 
 	}
