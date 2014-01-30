@@ -20,5 +20,5 @@ int searchInsert(int A[], int n, int target) {
 			l = m+1;
 		}
 	}
-	return l;  //Note
+	return l;  //l will be pointing to the first element larger than target, r points to the first one smaller.
 }
