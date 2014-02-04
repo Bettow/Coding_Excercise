@@ -11,7 +11,7 @@
                 while (p && p->val == curr->next->val) {
                     p = p->next;
                 }
-                curr->next = p;
+                curr->next = p;  //Dont move ahead
             } else {
                 curr = curr->next;
             }
