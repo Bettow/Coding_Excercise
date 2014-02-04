@@ -3,12 +3,11 @@
         // DO NOT write int main() function
         long long int l = 0;
         long long int r = x;
-        long long int xx = x;
         while (l <=r) {
             long long int m = (l+r)/2;
-            if (m*m <= xx && (m+1)*(m+1) > xx) {
+            if (m*m <= x && (m+1)*(m+1) > x) {
                 return m;
-            } else if (m*m > xx) {
+            } else if (m*m > x) {
                 r = m-1;
             } else {
                 l = m+1;
